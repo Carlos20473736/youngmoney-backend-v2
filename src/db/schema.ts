@@ -9,6 +9,7 @@ export const users = mysqlTable('users', {
   password: varchar('password', { length: 255 }), // hash bcrypt
   deviceId: varchar('device_id', { length: 255 }).unique(),
   points: int('points').default(0), // saldo em pontos
+  balance: decimal('balance', { precision: 10, scale: 2 }).default('0.00'), // saldo em reais
   dailyPoints: int('daily_points').default(0), // pontos do dia (para ranking)
   totalEarned: int('total_earned').default(0),
   totalWithdrawn: decimal('total_withdrawn', { precision: 10, scale: 2 }).default('0.00'),

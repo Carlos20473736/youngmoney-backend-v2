@@ -35,13 +35,9 @@ router.post('/device-login.php', async (req, res) => {
       const referralCode = generateReferralCode();
       
       const [newUser] = await db.insert(schema.users).values({
-        id: userId,
         deviceId: deviceId,
         username: `Usuário ${Math.floor(Math.random() * 10000)}`,
         referralCode: referralCode,
-        balance: '0.00',
-        totalEarned: '0.00',
-        totalWithdrawn: '0.00',
       });
       
       user = await db.query.users.findFirst({
@@ -118,14 +114,10 @@ router.post('/google-login.php', async (req, res) => {
       const referralCode = generateReferralCode();
       
       await db.insert(schema.users).values({
-        id: userId,
         email: email,
         username: name || email.split('@')[0],
         deviceId: deviceId || null,
         referralCode: referralCode,
-        balance: '0.00',
-        totalEarned: '0.00',
-        totalWithdrawn: '0.00',
       });
       
       user = await db.query.users.findFirst({
